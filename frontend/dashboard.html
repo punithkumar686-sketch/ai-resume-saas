@@ -1,0 +1,38 @@
+<h2>AI Resume Builder</h2>
+
+<input id="name">
+<input id="job">
+<textarea id="skills"></textarea>
+<textarea id="exp"></textarea>
+
+<button onclick="generate()">Generate</button>
+<button onclick="pay()">Upgrade</button>
+
+<pre id="out"></pre>
+
+<script>
+const user_id = localStorage.getItem("user_id")
+
+async function generate() {
+  const res = await fetch("YOUR_BACKEND/generate", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      user_id,
+      name: name.value,
+      job: job.value,
+      skills: skills.value,
+      experience: exp.value
+    })
+  })
+
+  const data = await res.json()
+  out.innerText = data.resume
+}
+
+async function pay() {
+  const res = await fetch("YOUR_BACKEND/pay")
+  const data = await res.json()
+  window.location = data.url
+}
+</script>
