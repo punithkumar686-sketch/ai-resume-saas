@@ -1,0 +1,7 @@
+flask
+flask-cors
+openai
+stripe
+sqlite3
+werkzeug
+reportlab
